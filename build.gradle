@@ -1,16 +1,17 @@
 apply plugin: 'java-library'
 apply plugin: 'maven-publish'
-apply plugin: 'signing'
+// apply plugin: 'signing'
 
 defaultTasks 'clean', 'compileJava', 'test'
 
 repositories {
+	  mavenLocal()
     mavenCentral()
 }
 
 dependencies {
-    api 'com.structurizr:structurizr-client:1.16.2'
-    implementation 'com.structurizr:structurizr-documentation:1.0.2'
+    api 'com.structurizr:structurizr-client:1.17.0-x1'
+    implementation 'com.structurizr:structurizr-documentation:1.0.2-x1'
 
     testImplementation 'org.codehaus.groovy:groovy-jsr223:3.0.13'
     testImplementation 'org.jetbrains.kotlin:kotlin-scripting-jsr223:1.7.22'
@@ -27,7 +28,7 @@ targetCompatibility = 1.8
 
 description = 'Structurizr DSL'
 group = 'com.structurizr'
-version = '1.21.2'
+version = '1.21.2-x1'
 
 test {
     useJUnitPlatform()
@@ -93,6 +94,6 @@ publishing {
     }
 }
 
-signing {
-    sign publishing.publications.mavenJava
-}
+// signing {
+//     sign publishing.publications.mavenJava
+// }

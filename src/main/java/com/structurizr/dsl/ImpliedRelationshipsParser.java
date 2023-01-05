@@ -1,6 +1,7 @@
 package com.structurizr.dsl;
 
 import com.structurizr.model.CreateImpliedRelationshipsUnlessAnyRelationshipExistsStrategy;
+import com.structurizr.model.CreateImpliedRelationshipsUnlessSameRelationshipExistsStrategy;
 import com.structurizr.model.DefaultImpliedRelationshipsStrategy;
 
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.List;
 
 final class ImpliedRelationshipsParser extends AbstractParser {
 
-    private static final String GRAMMAR = "!impliedRelationships <true|false>";
+    private static final String GRAMMAR = "!impliedRelationships <true|false|same>";
 
     private static final int FLAG_INDEX = 1;
     private static final String FALSE = "false";
@@ -27,7 +28,11 @@ final class ImpliedRelationshipsParser extends AbstractParser {
         if (tokens.get(FLAG_INDEX).equalsIgnoreCase(FALSE)) {
             context.getWorkspace().getModel().setImpliedRelationshipsStrategy(new DefaultImpliedRelationshipsStrategy());
         } else {
-            context.getWorkspace().getModel().setImpliedRelationshipsStrategy(new CreateImpliedRelationshipsUnlessAnyRelationshipExistsStrategy());
+            if (tokens.get(FLAG_INDEX).equalsIgnoreCase("same")) {
+                context.getWorkspace().getModel().setImpliedRelationshipsStrategy(new CreateImpliedRelationshipsUnlessSameRelationshipExistsStrategy());
+            } else {
+                context.getWorkspace().getModel().setImpliedRelationshipsStrategy(new CreateImpliedRelationshipsUnlessAnyRelationshipExistsStrategy());
+            }
         }
     }
 

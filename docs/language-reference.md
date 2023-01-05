@@ -129,7 +129,7 @@ Comments can be defined as follows:
 
 ## Identifiers
 
-By default, all elements and relationships are anonymous, in that they can't be referenced from within the DSL. For example, the following statements will create a person and a software system, but neither can be referenced within the DSL. 
+By default, all elements and relationships are anonymous, in that they can't be referenced from within the DSL. For example, the following statements will create a person and a software system, but neither can be referenced within the DSL.
 
 ```
 person "User"
@@ -194,13 +194,13 @@ workspace {
     }
 }
 ```
- 
+
  Now the two API containers are referenceable via `softwareSystem1.api` and `softwareSystem2.api` respectively.
- 
+
 ### !impliedRelationships
 
 ```
-!impliedRelationships <true|false>
+!impliedRelationships <true|false|same>
 ```
 
 The `!impliedRelationships` keyword provides a way to enable or disable whether implied relationships are created.
@@ -227,7 +227,7 @@ Some examples are:
 !include model/people.dsl
 !include model
 !include https://example.com/model/people.dsl
-``` 
+```
 
 ## Constants
 
@@ -237,7 +237,7 @@ The `!constant` keyword can be used to define a constant, which can be used with
 !constant <name> <value>
 ```
 
-Constant names may only contain the following characters: `a-zA-Z0-9-_.` 
+Constant names may only contain the following characters: `a-zA-Z0-9-_.`
 
 ## Expressions
 
@@ -290,9 +290,9 @@ public class TestPlugin implements StructurizrDslPlugin {
 
 }
 ```
- 
+
 The compiled plugin packaged as a JAR file (plus any other JAR dependencies) should be placed in a directory named `plugins` next to your DSL file. You can then use your plugin from the DSL using the `!plugin` keyword.
- 
+
  ```
  workspace {
 
@@ -307,7 +307,7 @@ Parameters can be specified in the plugin body, for example.
  workspace {
 
     !plugin com.example.TestPlugin {
-		name value      
+		name value
     }
 
 }
@@ -345,9 +345,9 @@ To use an external script, create a script file next to your DSL file (e.g. `scr
 workspace.views.createDefaultViews()
 workspace.views.views.forEach { it.disableAutomaticLayout() }
 ```
- 
+
 You can then use your script from the DSL using the `!script` keyword.
- 
+
  ```
   !script script.kts
   ```
@@ -584,7 +584,7 @@ The `deploymentGroup` keyword provides a way to define a named deployment group.
 deploymentGroup <name>
 ```
 
-When software system/container instances are added to a deployment environment, all of the relationships between these elements are automatically replicated between *all* instances. Deployment groups provide a way to restrict the scope in which relationships are replicated. See [deployment-groups.dsl](../src/test/dsl/deployment-groups.dsl) for an example.  
+When software system/container instances are added to a deployment environment, all of the relationships between these elements are automatically replicated between *all* instances. Deployment groups provide a way to restrict the scope in which relationships are replicated. See [deployment-groups.dsl](../src/test/dsl/deployment-groups.dsl) for an example.
 
 ### deploymentNode
 
@@ -730,7 +730,7 @@ Permitted children:
 
 `->` is used to define a uni-directional relationship between two elements.
 
-There are two ways to define relationships. The first is explicitly, where you explicitly use a source identifier: 
+There are two ways to define relationships. The first is explicitly, where you explicitly use a source identifier:
 
 ```
 <identifier> -> <identifier> [description] [technology] [tags] {
@@ -877,7 +877,7 @@ Or, if you're extending a JSON-based workspace, you can reference an element by 
 
 See [ref.dsl](../src/test/dsl/ref.dsl) for some usage examples.
 
-__Please note that `!ref` is currently an experimental feature.__ 
+__Please note that `!ref` is currently an experimental feature.__
 
 ### views
 
@@ -1015,8 +1015,8 @@ dynamic <*|software system identifier|container identifier> [key] [description] 
 The first property defines the scope of the view, and therefore what can be added to the view, as follows:
 
 - `*` scope: People and software systems.
-- Software system scope: People, other software systems, and containers. 
-- Container scope: People, other software systems, other containers, and components. 
+- Software system scope: People, other software systems, and containers.
+- Container scope: People, other software systems, other containers, and components.
 
 Unlike the other diagram types, Dynamic views are created by specifying the relationships that should be added to the view, within the `dynamic` block, as follows:
 
@@ -1099,7 +1099,7 @@ The wildcard identifier (`*`) operates differently depending upon the type of di
 
 - System Landscape view: Include all people and software systems.
 - System Context view: Include the software system in scope; plus all people and software systems that are directly connected to the software system in scope.
-- Container view: Include all containers within the software system in scope; plus all people and software systems that are directly connected to those containers. 
+- Container view: Include all containers within the software system in scope; plus all people and software systems that are directly connected to those containers.
 - Component view: Include all components within the container in scope; plus all people, software systems and containers (belonging to the software system in scope) directly connected to them.
 - Filtered view: (not applicable)
 - Dynamic view: (not applicable)
@@ -1112,7 +1112,7 @@ They provide a way to include elements based upon some basic conditional logic, 
 
 #### Including relationships
 
-To include a relationship in a view, you can specify an individual relationship identifier, or an expression: 
+To include a relationship in a view, you can specify an individual relationship identifier, or an expression:
 
 ```
 include <identifier|expression> [identifier|expression...]
@@ -1148,7 +1148,7 @@ They provide a way to exclude relationships based upon some basic conditional lo
 Alternatively, you can use the relationship expression syntax as follows (please note the double quotes surrounding the entire expression):
 
 ```
-exclude "<*|identifier> -> <*|identifier>" 
+exclude "<*|identifier> -> <*|identifier>"
 ```
 
 The combinations of parameters are:
@@ -1243,9 +1243,9 @@ element <tag> {
 
 Please note that element styles are designed to work with the Structurizr cloud service/on-premises installation/Lite, and may not be fully supported by the PlantUML, Mermaid, etc export formats.
 
-Important note: see [Help - Icons](https://structurizr.com/help/icons) if you are specifying an element style icon via a URL. 
+Important note: see [Help - Icons](https://structurizr.com/help/icons) if you are specifying an element style icon via a URL.
 
-            
+
 ### relationship style
 
 The `relationship` keyword is used to define a relationship style. All nested properties (`thickness`, `color`, etc) are optional, see [Structurizr - Notation](https://structurizr.com/help/notation)  for details about how tags and styles work.
@@ -1267,7 +1267,7 @@ relationship <tag> {
 }
 ```
 
-Please note that relationship styles are designed to work with the Structurizr cloud service/on-premises installation/Lite, and may not be fully supported by the PlantUML, Mermaid, etc export formats. 
+Please note that relationship styles are designed to work with the Structurizr cloud service/on-premises installation/Lite, and may not be fully supported by the PlantUML, Mermaid, etc export formats.
 
 ### theme
 
@@ -1336,7 +1336,7 @@ Permitted children:
 
 ### users
 
-The `users` block can be used to specify the users who should have read-only or read-write access to a workspace. Each username (e.g. e-mail address) and role pair should be specified on their own line. Valid roles are `read` (read-only) and `write` (read-write). 
+The `users` block can be used to specify the users who should have read-only or read-write access to a workspace. Each username (e.g. e-mail address) and role pair should be specified on their own line. Valid roles are `read` (read-only) and `write` (read-write).
 
 ```
 users {
@@ -1356,7 +1356,7 @@ The path must be a relative path, located within the same directory as the paren
 
 ```
 !docs subdirectory
-``` 
+```
 
 By default, the [com.structurizr.documentation.importer.DefaultDocumentationImporter](https://github.com/structurizr/documentation/blob/main/src/main/java/com/structurizr/documentation/importer/DefaultDocumentationImporter.java) class will be used to import documentation as follows:
 
@@ -1378,12 +1378,12 @@ The path must be a relative path, located within the same directory as the paren
 
 ```
 !adrs subdirectory
-``` 
+```
 
 By default, the [com.structurizr.documentation.importer.AdrToolsDecisionImporter](https://github.com/structurizr/documentation/blob/main/src/main/java/com/structurizr/documentation/importer/AdrToolsDecisionImporter.java) class will be used to import ADRs as follows:
 
 - All Markdown files in this directory will be imported, alphabetically according to the filename.
-- The files must have been created by [adr-tools](https://github.com/npryce/adr-tools), or at least follow the same format. 
+- The files must have been created by [adr-tools](https://github.com/npryce/adr-tools), or at least follow the same format.
 - All images in the given directory (and sub-directories) are also imported into the workspace.
 
 The above behaviour can be customised by specifying the fully qualified class name of your own implementation of [DocumentationImporter](https://github.com/structurizr/documentation/blob/main/src/main/java/com/structurizr/documentation/importer/DocumentationImporter.java), which needs to be on the DSL classpath or installed as a JAR file in the `plugins` directory next to your DSL file.

@@ -200,7 +200,7 @@ workspace {
 ### !impliedRelationships
 
 ```
-!impliedRelationships <true|false|same>
+!impliedRelationships <true|false|same|parent>
 ```
 
 The `!impliedRelationships` keyword provides a way to enable or disable whether implied relationships are created.
